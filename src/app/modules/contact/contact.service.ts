@@ -40,6 +40,19 @@ const updateContact = async(payload: Partial<TContact>, id: string) => {
     }
     return updatedContact
 }
+const changeFavoriteStatus = async(isFavourite: boolean, id: string) => {
+
+  // console.log(isFavourite);
+    
+    const updatedContact = await Contact.findByIdAndUpdate(id,
+       {isFavourite} ,
+      { new: true }
+    );
+    if (!updatedContact) {
+      throw new Error( 'Contact not found');
+    }
+    return updatedContact
+}
 
 const deleteContact = async(id: string) => {
     const deletedContact = await Contact.findByIdAndDelete(id);
@@ -54,5 +67,6 @@ export const contactService = {
     getAll,
     getSingleContact,
     updateContact,
-    deleteContact
+    deleteContact,
+    changeFavoriteStatus
 }

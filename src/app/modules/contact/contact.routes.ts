@@ -13,6 +13,7 @@ router.post(
 router.get('/', contactController.getAll);
 router.get('/:id', contactController.getSingleContact);
 router.patch('/:id', contactController.updateContact);
+router.patch('/isFavourite/:id', contactController.changeFavoriteStatus);
 router.delete('/:id', contactController.deleteContact);
 
 export const ContactRoutes = router;
